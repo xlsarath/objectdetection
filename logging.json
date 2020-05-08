@@ -1,0 +1,106 @@
+{
+  "logging": {
+    "version": 1,
+    "disable_existing_loggers": true,
+    "formatters": {
+
+      "single-line": {
+        "class": "logging.Formatter",
+        "datefmt": "%m/%d/%Y %I:%M:%S %p",
+        "format": "%(levelname)-8s; %(asctime)s; %(name)-15s; %(module)s:%(funcName)s;%(lineno)d: %(message)s"
+      },
+
+      "verbose": {
+        "class": "logging.Formatter",
+        "datefmt": "%m/%d/%Y %I:%M:%S %p",
+        "format": "%(levelname)-8s; %(asctime)s; [%(process)d]; %(threadName)s; %(name)-15s; %(module)s:%(funcName)s;%(lineno)d: %(message)s"
+      },
+      "multiline": {
+        "class": "logging.Formatter",
+        "format": "Level: %(levelname)s\nTime: %(asctime)s\nProcess: %(process)d\nThread: %(threadName)s\nLogger: %(name)s\nPath: %(module)s:%(lineno)d\nFunction :%(funcName)s\nMessage: %(message)s\n"
+      }
+    },
+    "handlers": {
+      "console":{
+        "level": "DEBUG",
+        "class": "logging.StreamHandler",
+        "formatter": "single-line",
+        "stream" : "ext://sys.stdout"
+      },
+      "info": {
+        "class": "logging.handlers.RotatingFileHandler",
+        "level": "INFO",
+        "formatter": "verbose",
+        "filename": "info.log",
+        "maxBytes": 1073741824,
+        "backupCount": 50,
+        "mode": "w",
+        "encoding": "utf8"
+       },
+      "warning": {
+        "class": "logging.handlers.RotatingFileHandler",
+        "level": "WARNING",
+        "formatter": "verbose",
+        "filename": "warning.log",
+        "maxBytes": 1073741824,
+        "backupCount": 50,
+        "mode": "w",
+        "encoding": "utf8"
+    },
+      "error": {
+        "class": "logging.handlers.RotatingFileHandler",
+        "level": "ERROR",
+        "formatter": "verbose",
+        "filename": "errors.log",
+        "maxBytes": 1073741824,
+        "backupCount": 50,
+        "mode": "w",
+        "encoding": "utf8"
+    }
+    },
+    "loggers": { },
+    "root": {
+      "handlers": ["console","info","error","warning"],
+      "level": "DEBUG"
+    }
+  },
+
+
+  "sim_length":{
+    "hours": 20,
+    "minutes":0,
+    "seconds":15
+  },
+
+
+
+  "case": {
+    "flag": "B",
+    
+    "case_A": {
+     "type":  "advisory_testcase",
+     "dbus_settings": "\\DBus Settings_withMeteringSimulator.json",
+     "opendss_settings": "\\IEEE_123\\feeder\\Monitors.DSS",
+     "pvsim_setupfile": "\\Ckt_7_withSettingFiles_10Pvs\\SetupFile10Inv240V.csv",
+     "output_csv_file_location": "\\results\\",
+     "no_of_sims_per_dataframe" : "15",
+     "no_of_components_conected_to_dbus" : "6",
+     "logging_resolution_of_sim_step": "5"},
+
+    "case_B": {
+      "type": "Case2_9PVs_2RMs",
+      "dbus_settings": "\\Python Scripts\\Co-Sim_Settings_9PVs_RM_Metering_newSimController.json",
+      "output_log_folder_location": "C:\\Users\\psma018\\Documents\\Ckt\\Case2_9PVs_2RMs",
+      "output_csv_file_location": "\\results\\",
+      "output_csv_file_location_fat":"\\Cases\\Battersea_12\\OutputFiles - CSV DNP3\\",
+      "output_csv_file_location_long":"\\\\10.75.12.133\\Staged\\DERMS-Testbed-OpenDSS\\",
+      "no_of_sims_per_dataframe": "15",
+      "no_of_components_conected_to_dbus": "6",
+      "logging_resolution_of_sim_step": "5"
+      }
+    }
+  
+  
+  
+  }
+
